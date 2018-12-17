@@ -242,7 +242,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PAACJS 0000
+  m_Text: SCORE 0000
 --- !u!222 &156946989
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 1261970079}
   - component: {fileID: 1261970082}
   - component: {fileID: 1261970078}
+  - component: {fileID: 1261970083}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -679,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3705fcff554ecf49a2ff7889ded25e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreTextPreamble: PAACJS
+  scoreTextPreamble: SCORE
   highscoreTextPreamble: BEST
   scoreText: {fileID: 156946988}
   highscoreText: {fileID: 1402985766}
@@ -765,6 +766,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &1261970083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261970077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae5d7c514e3390040a03a009d39aba55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreFont: {fileID: 12800000, guid: d10305bf67d98f24f8ee95646558a884, type: 3}
+  fadeDuration: 1
+  verticalOffset: 35
 --- !u!1 &1367691938
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,8 +893,8 @@ MonoBehaviour:
   m_SubmitButton: Submit
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
-  m_RepeatDelay: 0.5
-  m_ForceModuleActive: 0
+  m_RepeatDelay: 0
+  m_ForceModuleActive: 1
 --- !u!114 &1382710487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1101,34 +1117,25 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0.010620325
-      value: 6.638142
-      inSlope: -0.0039049028
-      outSlope: -0.0039049028
+      value: 5.8501515
+      inSlope: -0.06175618
+      outSlope: -0.06175618
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.15358332
+      outWeight: 0.17517892
     - serializedVersion: 3
-      time: 33.00103
-      value: 2.3041883
-      inSlope: -0.07294262
-      outSlope: -0.07294262
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.15531443
-    - serializedVersion: 3
-      time: 76.5899
-      value: 0.9830217
-      inSlope: -0.009903685
-      outSlope: -0.009903685
+      time: 108.97676
+      value: 1.4388168
+      inSlope: -0.012694892
+      outSlope: -0.012694892
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.2595008
-      outWeight: 0.08214945
+      outWeight: 0.0752023
     - serializedVersion: 3
-      time: 370.73358
-      value: 0.06862154
+      time: 432.43503
+      value: 0.015378963
       inSlope: 0
       outSlope: 0
       tangentMode: 0

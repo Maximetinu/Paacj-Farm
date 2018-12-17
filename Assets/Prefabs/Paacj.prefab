@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 4063135056830793946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.35, y: 0.35, z: 0.35}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 6545880572066252799}
   m_RootOrder: 0
@@ -93,6 +93,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 8389344330186060227}
+  anim: {fileID: 6545880572066252793}
+  updateStep: 0.0158
+  decreaseDelayed: 1
+  decreaseDelayedSpeed: 2
 --- !u!1 &6545880572066252792
 GameObject:
   m_ObjectHideFlags: 0
@@ -220,7 +224,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.73, y: 1.07}
+  m_Size: {x: 0.9, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &5637219539574622984
 MonoBehaviour:
@@ -291,6 +295,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6e5b9ff1b6255f340aa4401211772a0f, type: 3}
   - {fileID: 8300000, guid: 326e3bb5d909129498c3fcd14114f077, type: 3}
   - {fileID: 8300000, guid: d566e01c4fb4547429a236f5c4d0c198, type: 3}
+  - {fileID: 8300000, guid: f022bfd1255537f4ca4ed46028d2feb8, type: 3}
+  - {fileID: 8300000, guid: 43680fb9f96c8c54da5b5ac45f7db934, type: 3}
+  - {fileID: 8300000, guid: c9b6d9829efd9254a8ff603a268fb500, type: 3}
+  - {fileID: 8300000, guid: bed8b0654993d1a41ba7b93458c72d6c, type: 3}
 --- !u!82 &8389344330186060227
 AudioSource:
   m_ObjectHideFlags: 0

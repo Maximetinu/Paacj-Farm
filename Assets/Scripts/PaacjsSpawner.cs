@@ -7,6 +7,8 @@ public class PaacjsSpawner : MonoBehaviour
 	public float initialWait = 2.0f;
 	public GameObject paacj;
 
+	const float randomSpawnRateRange = 10.0f;
+
 	void Start()
 	{
 		StartCoroutine(SpawnRoutine());
@@ -28,7 +30,7 @@ public class PaacjsSpawner : MonoBehaviour
 		while (Application.isPlaying)
 		{
 			Spawn();
-			yield return new WaitForSeconds(spawnRate.Evaluate(Time.timeSinceLevelLoad));
+			yield return new WaitForSeconds(spawnRate.Evaluate(Time.timeSinceLevelLoad + Random.Range(-randomSpawnRateRange, +randomSpawnRateRange)));
 		}
 	}
 }

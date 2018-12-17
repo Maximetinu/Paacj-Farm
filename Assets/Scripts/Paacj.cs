@@ -6,12 +6,14 @@ public class Paacj : MonoBehaviour, IPointerDownHandler
 	public AudioClip bloodEffect;
 	public Sprite[] bloods;
 	public AudioClip[] paacjs;
+	Loudness loud;
 
 	AudioSource source;
 
 	void Start()
 	{
 		source = GetComponent<AudioSource>();
+		loud = GetComponentInChildren<Loudness>();
 
 		source.loop = true;
 		source.clip = paacjs[Random.Range(0, paacjs.Length)];
@@ -25,7 +27,8 @@ public class Paacj : MonoBehaviour, IPointerDownHandler
 	{
 		SpriteRenderer mySpriteRenderer = GetComponent<SpriteRenderer>();
 
-		GameController.PointUp();
+		GameController.PointUp(loud.CurrentLoudnessLevel);
+		ScoreDrawer.Instance.DrawScore(loud.CurrentLoudnessLevel, transform.position);
 
 		// Death sound effect
 		source.Stop();
@@ -34,7 +37,7 @@ public class Paacj : MonoBehaviour, IPointerDownHandler
 
 		// Draw blood
 		mySpriteRenderer.sprite = bloods[Random.Range(0, bloods.Length)];
-		mySpriteRenderer.sortingOrder = -1;
+		mySpriteRenderer.sortingOrder = -99;
 
 		// Randomize blood
 		transform.Rotate(Vector3.zero * 90 * Random.Range(0, 4));

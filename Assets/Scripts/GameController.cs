@@ -51,9 +51,9 @@ public class GameController : SingletonMonoBehaviour<GameController>
 		onGameOver.Invoke();
 	}
 
-	public static void PointUp()
+	public static void PointUp(int points)
 	{
-		Score++;
+		Score += points;
 		onPointUp.Invoke(Score);
 	}
 
