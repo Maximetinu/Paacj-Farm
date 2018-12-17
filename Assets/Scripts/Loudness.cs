@@ -57,7 +57,7 @@ public class Loudness : MonoBehaviour
 		//ComputeMaxAmplitude();
 	}
 
-	// Lazy inicialization through hash set? - Or maybe serialized precomputed data?
+	// Lazy inicialization through hash set? - Or maybe serialized precomputed data? - TODO: testear que rinde
 	//void ComputeMaxAmplitude()
 	//{
 	//	float[] samples = new float[target.clip.samples * target.clip.channels];
