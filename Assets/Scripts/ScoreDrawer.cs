@@ -3,82 +3,94 @@ using UnityEngine;
 using UnityEngine.UI;
 public class ScoreDrawer : MonoBehaviour
 {
-	private static ScoreDrawer instance;
-	public static ScoreDrawer Instance
-	{
-		get
-		{
-			if (instance == null)
-			{
-				instance = FindObjectOfType<ScoreDrawer>();
-				if (instance == null)
-				{
-					GameObject obj = new GameObject();
-					obj.name = typeof(ScoreDrawer).Name;
-					instance = obj.AddComponent<ScoreDrawer>();
-				}
-			}
-			return instance;
-		}
-	}
+    public Font scoreFont;
+    public float fadeDuration = 1f;
+    public float verticalDisplacement = 1f;
 
-	public virtual void Awake()
-	{
-		if (instance == null)
-		{
-			instance = this as ScoreDrawer;
-			//DontDestroyOnLoad(this.gameObject); // Do not make it persistent
-		}
-		else
-		{
-			Destroy(gameObject);
-		}
-	}
+    private static ScoreDrawer instance;
 
-	public Font scoreFont;
-	public float fadeDuration = 1f;
-	public float verticalOffset = 10f;
+    public static ScoreDrawer Instance
+    {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<ScoreDrawer>();
+                if (instance == null)
+                {
+                    GameObject obj = new GameObject();
+                    obj.name = typeof(ScoreDrawer).Name;
+                    instance = obj.AddComponent<ScoreDrawer>();
+                }
+            }
+            return instance;
+        }
+    }
 
-	public void DrawScore(int scoreGained, Vector3 position)
-	{
-		GameObject go = new GameObject("+" + scoreGained);
+    public virtual void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this as ScoreDrawer;
+            //DontDestroyOnLoad(this.gameObject); // Do not make it persistent
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
-		Text text = go.AddComponent<Text>();
-		text.text = "+" + scoreGained;
-		text.font = scoreFont;
-		text.fontSize = 50;
-		text.alignment = TextAnchor.MiddleCenter;
+    public void DrawScore(int scoreGained, Vector3 worldPosition)
+    {
+        GameObject go;
+        Text goText;
+        Vector3 worldPositionToFade;
+        float verticalDisplacementResponsive;
 
-		go.transform.SetParent(Instance.transform);
-		go.transform.position = Camera.main.WorldToScreenPoint(position);
+        go = new GameObject("+" + scoreGained);
+        goText = go.AddComponent<Text>();
 
-		StartCoroutine(FadeOutAndDestroy(text, fadeDuration, verticalOffset));
-	}
+        goText.text = "+" + scoreGained;
+        goText.font = scoreFont;
+        goText.fontSize = 50;
+        goText.alignment = TextAnchor.MiddleCenter;
 
-	IEnumerator FadeOutAndDestroy(Text text, float duration, float verticalOffset)
-	{
-		float start = Time.time;
+        go.transform.SetParent(Instance.transform);
+        go.transform.localScale = Vector3.one;
 
-		Color startColor = text.color;
-		Color endColor = startColor;
-		endColor.a = 0f;
+        go.transform.position = Camera.main.WorldToScreenPoint(worldPosition);
+        worldPositionToFade = Camera.main.WorldToScreenPoint(worldPosition + Vector3.up * verticalDisplacement);
 
-		Vector3 startPosition = text.transform.position;
-		Vector3 endPosition = startPosition + verticalOffset * Vector3.up;
+        verticalDisplacementResponsive = worldPositionToFade.y - go.transform.position.y;
 
-		float elapsed = 0;
 
-		while (elapsed < duration)
-		{
-			// calculate how far through we are
-			elapsed = Time.time - start;
-			float normalisedTime = Mathf.Clamp(elapsed / duration, 0, 1);
-			text.color = Color.Lerp(startColor, endColor, normalisedTime);
-			text.transform.position = Vector3.Lerp(startPosition, endPosition, normalisedTime);
-			// wait for the next frame
-			yield return null;
-		}
-		Destroy(text.gameObject);
-	}
+        StartCoroutine(FadeOutAndDestroy(goText, fadeDuration, verticalDisplacementResponsive));
+    }
+
+    IEnumerator FadeOutAndDestroy(Text text, float duration, float verticalDisplacement)
+    {
+        float start = Time.time;
+
+        Color startColor = text.color;
+        Color endColor = startColor;
+        endColor.a = 0f;
+
+        Vector3 startPosition = text.transform.position;
+        Vector3 endPosition = startPosition + verticalDisplacement * Vector3.up;
+
+        float elapsed = 0;
+
+        while (elapsed < duration)
+        {
+            // calculate how far through we are
+            elapsed = Time.time - start;
+            float normalisedTime = Mathf.Clamp(elapsed / duration, 0, 1);
+            text.color = Color.Lerp(startColor, endColor, normalisedTime);
+            text.transform.position = Vector3.Lerp(startPosition, endPosition, normalisedTime);
+            // wait for the next frame
+            yield return null;
+        }
+        Destroy(text.gameObject);
+    }
 
 }

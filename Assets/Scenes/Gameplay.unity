@@ -780,7 +780,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scoreFont: {fileID: 12800000, guid: d10305bf67d98f24f8ee95646558a884, type: 3}
   fadeDuration: 1
-  verticalOffset: 35
+  verticalDisplacement: 1
 --- !u!1 &1367691938
 GameObject:
   m_ObjectHideFlags: 0
