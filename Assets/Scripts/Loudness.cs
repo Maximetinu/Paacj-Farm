@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Loudness : MonoBehaviour
 {
@@ -8,8 +9,9 @@ public class Loudness : MonoBehaviour
         AudioClip thisClip;
 
         public float maxScaleAmplitude;
-        public float lowThreshold, mediumThreshold, highThreshold, perfectThreshold;
-        public readonly int loudnessThresholdCount = 4;
+
+        float lowThreshold, mediumThreshold, highThreshold, perfectThreshold;
+        readonly int loudnessThresholdCount = 4;
 
         public ClipLoudnessData(AudioClip clip)
         {
@@ -17,6 +19,30 @@ public class Loudness : MonoBehaviour
 
             InitMaxScaleAmplitude();
             InitClipLoudnessThresholds();
+        }
+
+        public int GetLoudnessLevel(float ofThisLoudness)
+        {
+            if (ofThisLoudness <= this.lowThreshold) // 0.1f
+            {
+                return 1;
+            }
+            else if (ofThisLoudness <= this.mediumThreshold) // 0.3f
+            {
+                return 2;
+            }
+            else if (ofThisLoudness <= this.highThreshold) // 0.4f
+            {
+                return 3;
+            }
+            else if (ofThisLoudness <= this.perfectThreshold) // 0.5f
+            {
+                return 4;
+            }
+            else
+            {
+                return 5;
+            }
         }
 
         void InitMaxScaleAmplitude()
@@ -87,26 +113,7 @@ public class Loudness : MonoBehaviour
     {
         get
         {
-            if (clipLoudness <= currentClipData.lowThreshold) // 0.1f
-            {
-                return 1;
-            }
-            else if (clipLoudness <= currentClipData.mediumThreshold) // 0.3f
-            {
-                return 2;
-            }
-            else if (clipLoudness <= currentClipData.highThreshold) // 0.4f
-            {
-                return 3;
-            }
-            else if (clipLoudness <= currentClipData.perfectThreshold) // 0.5f
-            {
-                return 4;
-            }
-            else
-            {
-                return 5;
-            }
+            return currentClipData.GetLoudnessLevel(clipLoudness);
         }
     }
 
@@ -121,6 +128,8 @@ public class Loudness : MonoBehaviour
 
     float[] clipSampleData;
 
+    static Dictionary<AudioClip, ClipLoudnessData> lazyInitializedLoudnessData = new Dictionary<AudioClip, ClipLoudnessData>();
+
     ClipLoudnessData currentClipData;
 
     void Start()
@@ -130,8 +139,16 @@ public class Loudness : MonoBehaviour
 
         clipSampleData = new float[sampleDataLength];
 
-        // Init Clip Loudness Data
-        currentClipData = new ClipLoudnessData(target.clip);
+        // Init Clip Loudness Data if not initialized before (lazy initialization)
+        if (!lazyInitializedLoudnessData.ContainsKey(target.clip))
+        {
+            currentClipData = new ClipLoudnessData(target.clip);
+            lazyInitializedLoudnessData.Add(target.clip, currentClipData);
+        }
+        else
+        {
+            currentClipData = lazyInitializedLoudnessData[target.clip];
+        }
     }
 
 
