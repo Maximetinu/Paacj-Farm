@@ -7,6 +7,8 @@ public class ScoreDrawer : MonoBehaviour
     public float fadeDuration = 1f;
     public float verticalDisplacement = 1f;
 
+    public AnimationCurve movementCurve, fadeOutCurve;
+
     private static ScoreDrawer instance;
 
     public static ScoreDrawer Instance
@@ -85,8 +87,8 @@ public class ScoreDrawer : MonoBehaviour
             // calculate how far through we are
             elapsed = Time.time - start;
             float normalisedTime = Mathf.Clamp(elapsed / duration, 0, 1);
-            text.color = Color.Lerp(startColor, endColor, normalisedTime);
-            text.transform.position = Vector3.Lerp(startPosition, endPosition, normalisedTime);
+            text.color = Color.Lerp(startColor, endColor, fadeOutCurve.Evaluate(normalisedTime));
+            text.transform.position = Vector3.Lerp(startPosition, endPosition, movementCurve.Evaluate(normalisedTime));
             // wait for the next frame
             yield return null;
         }

@@ -3,55 +3,59 @@ using UnityEngine.EventSystems;
 
 public class Paacj : MonoBehaviour, IPointerDownHandler
 {
-	public AudioClip bloodEffect;
-	public Sprite[] bloods;
-	public AudioClip[] paacjs;
-	Loudness loud;
+    public AudioClip bloodEffect;
+    public Sprite[] bloods;
+    public AudioClip[] paacjs;
+    Loudness loud;
 
-	AudioSource source;
+    AudioSource source;
 
-	void Start()
-	{
-		source = GetComponent<AudioSource>();
-		loud = GetComponentInChildren<Loudness>();
+    void Start()
+    {
+        source = GetComponent<AudioSource>();
+        loud = GetComponentInChildren<Loudness>();
 
-		source.loop = true;
-		source.clip = paacjs[Random.Range(0, paacjs.Length)];
-		source.pitch = 1 + Random.Range(-0.35f, 0.35f);
-		source.Play();
+        source.loop = true;
+        source.clip = paacjs[Random.Range(0, paacjs.Length)];
+        source.pitch = 1 + Random.Range(-0.35f, 0.35f);
+        source.Play();
 
-		GameController.PaacjUp();
-	}
+        GameController.PaacjUp();
+    }
 
-	public void OnPointerDown(PointerEventData pointerData)
-	{
-		SpriteRenderer mySpriteRenderer = GetComponent<SpriteRenderer>();
+    public void OnPointerDown(PointerEventData pointerData)
+    {
+        SpriteRenderer mySpriteRenderer;
+        int currentLoudnessLevel;
 
-		GameController.PointUp(loud.CurrentLoudnessLevel);
-		ScoreDrawer.Instance.DrawScore(loud.CurrentLoudnessLevel, transform.position);
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+        currentLoudnessLevel = loud.CurrentLoudnessLevel;
 
-		// Death sound effect
-		source.Stop();
-		source.pitch = 2.2f;
-		source.PlayOneShot(bloodEffect, 0.2f);
+        GameController.PointUp(currentLoudnessLevel);
+        ScoreDrawer.Instance.DrawScore(currentLoudnessLevel, transform.position);
 
-		// Draw blood
-		mySpriteRenderer.sprite = bloods[Random.Range(0, bloods.Length)];
-		mySpriteRenderer.sortingOrder = -99;
+        // Death sound effect
+        source.Stop();
+        source.pitch = 2.2f;
+        source.PlayOneShot(bloodEffect, 0.2f);
 
-		// Randomize blood
-		transform.Rotate(Vector3.zero * 90 * Random.Range(0, 4));
-		mySpriteRenderer.flipX = (Random.Range(0, 2) == 0);
-		mySpriteRenderer.flipY = (Random.Range(0, 2) == 0);
-		gameObject.name = "Blood";
+        // Draw blood
+        mySpriteRenderer.sprite = bloods[Random.Range(0, bloods.Length)];
+        mySpriteRenderer.sortingOrder = -99;
 
-		// Destroy unnecessary components
-		Destroy(GetComponent<Animator>());
-		Destroy(GetComponent<Collider2D>());
-		Destroy(source, bloodEffect.length);
-		Destroy(transform.GetChild(0).gameObject);
-		Destroy(this);
+        // Randomize blood
+        transform.Rotate(Vector3.zero * 90 * Random.Range(0, 4));
+        mySpriteRenderer.flipX = (Random.Range(0, 2) == 0);
+        mySpriteRenderer.flipY = (Random.Range(0, 2) == 0);
+        gameObject.name = "Blood";
 
-		GameController.PaacjDestroyed();
-	}
+        // Destroy unnecessary components
+        Destroy(GetComponent<Animator>());
+        Destroy(GetComponent<Collider2D>());
+        Destroy(source, bloodEffect.length);
+        Destroy(transform.GetChild(0).gameObject);
+        Destroy(this);
+
+        GameController.PaacjDestroyed();
+    }
 }
