@@ -369,7 +369,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
@@ -1173,8 +1173,8 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.17517892
     - serializedVersion: 3
-      time: 108.97676
-      value: 1.4388168
+      time: 82.166306
+      value: 1.4185226
       inSlope: -0.012694892
       outSlope: -0.012694892
       tangentMode: 0
