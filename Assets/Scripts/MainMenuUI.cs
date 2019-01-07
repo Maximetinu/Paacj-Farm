@@ -4,16 +4,23 @@ using UnityEngine.UI;
 
 public class MainMenuUI : MonoBehaviour
 {
-	public string highscoreTextPreamble = "BEST";
-	public Text highscoreText;
+    public string highscoreTextPreamble = "BEST";
+    public Text highscoreText;
 
-	void Start()
-	{
-		highscoreText.text = highscoreText.text = highscoreTextPreamble + " " + PlayerPrefs.GetInt("highscore", 0).ToString("0000");
-	}
+    void Start()
+    {
+        highscoreText.text = highscoreText.text = highscoreTextPreamble + " " + PlayerPrefs.GetInt("highscore", 0).ToString("0000");
+    }
 
-	public void Play()
-	{
-		SceneManager.LoadScene("Gameplay");
-	}
+    public void Play()
+    {
+        PaacjsSpawner.veganMode = false;
+        SceneManager.LoadScene("Gameplay");
+    }
+
+    public void VeganMode()
+    {
+        PaacjsSpawner.veganMode = true;
+        SceneManager.LoadScene("Gameplay");
+    }
 }

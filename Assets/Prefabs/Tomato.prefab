@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 4896525381919561889}
   - component: {fileID: 8389344330186060227}
   m_Layer: 8
-  m_Name: Paacj
+  m_Name: Tomato
   m_TagString: Paacj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -170,7 +170,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d6353875b0b7e82469c301c777c154d8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 31da07c5d9ead494282ac7607d748e78, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -191,7 +191,7 @@ Animator:
   m_GameObject: {fileID: 6545880572066252792}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4410efb1bdea94e4097140c2de8a4502, type: 2}
+  m_Controller: {fileID: 9100000, guid: 24cb27f1beb392f4788259f3f31ccc5c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
