@@ -2,7 +2,7 @@
 
 Android game made with Unity as a birthday present for a friend. Do not expect complex gameplay.
 
-![Banner](/Image/FunctionGraphic.png)
+![Banner](/Images/FunctionGraphic.png)
 
 ## Description
 
