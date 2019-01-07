@@ -4,6 +4,8 @@ Android game made with Unity as a birthday present for a friend. Do not expect c
 
 ![Banner](/Images/FunctionGraphic.png)
 
+[Download it from Play Store!](https://play.google.com/store/apps/details?id=com.LimpopoLabs.PaacjFarm)
+
 ## Description
 
 Kill chickens (or tomatoes in vegan mode) to avoid losing your ming because of the incoming apaaccjjlypse. Save your mind, save the world, *PAAACCJ!!*.
